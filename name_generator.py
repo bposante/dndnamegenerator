@@ -1,5 +1,8 @@
 import sys, random
-from PyQt5.QtWidgets import QApplication, QLabel, QWidget
+from PyQt5 import QtWidgets
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QApplication, QLabel, QWidget, QMainWindow
+from PyQt5.QtWidgets import QLineEdit, QPushButton, QHBoxLayout, QBoxLayout
 
 
 def name_generator():
@@ -32,19 +35,18 @@ def name_generator():
     input("Press Enter to exit.")
 
 
-# creates an instance of the application object
-app = QApplication(sys.argv)
+def window():
+    app = QApplication(sys.argv)
+    win = QMainWindow()
+    win.setGeometry(700, 200, 500, 230)
+    win.setWindowTitle("D&D Name Generator")
 
-# creates an instance of the application's gui
-window = QWidget()
-window.setWindowTitle("D&D Name Generator")
-window.setGeometry(100, 100, 500, 80)
-window.move(60, 15)
-helloMsg = QLabel("<h1>Welcome to the Name Generator</h1>", parent=window)
-helloMsg.move(60, 15)
+    label = QtWidgets.QLabel(win)
+    label.setText("Welcome to the D&D Name Generator")
+    label.move(200, 100)
 
-# show the gui
-window.show()
+    win.show()
+    sys.exit(app.exec_())
 
-# run app event loop (or main loop)
-sys.exit(app.exec_())
+if __name__ == '__main__':
+    window()
